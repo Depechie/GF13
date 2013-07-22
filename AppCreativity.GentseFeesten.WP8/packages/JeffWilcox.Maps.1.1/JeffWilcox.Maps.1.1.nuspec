@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JeffWilcox.Maps</id>
+    <version>1.1</version>
+    <title>Windows Phone Static Map Library</title>
+    <authors>Jeff Wilcox,  Tim Heuer,  ...</authors>
+    <owners>Jeff Wilcox,  Tim Heuer,  ...</owners>
+    <licenseUrl>http://www.opensource.org/licenses/apache2.0.php</licenseUrl>
+    <projectUrl>http://www.github.com/jeffwilcox/wp-maps/</projectUrl>
+    <iconUrl>http://d2bk44826ux9xe.cloudfront.net/phone.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The JeffWilcox.Maps class library provides a static map control and other utility functions helpful for applications that need to display a map. Supports both Bing Maps, Google Maps, MapQuest and OpenStreetMap.</description>
+    <releaseNotes>Adds MapQuest and OpenStreetMap providers by Tim Heuer.</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <language />
+    <tags>Windows "Windows Phone" phone wp7 maps bing google "google maps" "bing wpdev static "static OSM MapQuest</tags>
+  </metadata>
+</package>

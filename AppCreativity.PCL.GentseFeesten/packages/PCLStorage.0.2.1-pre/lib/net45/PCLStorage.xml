@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PCLStorage</name>
+    </assembly>
+    <members>
+        <member name="T:PCLStorage.Exceptions.FileNotFoundException">
+            <exclude/>
+        </member>
+        <member name="M:PCLStorage.Exceptions.FileNotFoundException.#ctor(System.String)">
+            <exclude/>
+        </member>
+        <member name="M:PCLStorage.Exceptions.FileNotFoundException.#ctor(System.String,System.Exception)">
+            <exclude/>
+        </member>
+        <member name="T:PCLStorage.Exceptions.DirectoryNotFoundException">
+            <exclude/>
+        </member>
+        <member name="M:PCLStorage.Exceptions.DirectoryNotFoundException.#ctor(System.String)">
+            <exclude/>
+        </member>
+        <member name="M:PCLStorage.Exceptions.DirectoryNotFoundException.#ctor(System.String,System.Exception)">
+            <exclude/>
+        </member>
+        <member name="T:PCLStorage.FileSystem">
+            <summary>
+            Provides access to an implementation of <see cref="T:PCLStorage.IFileSystem"/> for the current platform
+            </summary>
+        </member>
+        <member name="P:PCLStorage.FileSystem.Current">
+            <summary>
+            The implementation of <see cref="T:PCLStorage.IFileSystem"/> for the current platform
+            </summary>
+        </member>
+        <member name="T:PCLStorage.PortablePath">
+            <summary>
+            Provides portable versions of APIs such as Path.Combine
+            </summary>
+        </member>
+        <member name="M:PCLStorage.PortablePath.Combine(System.String[])">
+            <summary>
+            Combines multiple strings into a path
+            </summary>
+            <param name="paths">Path elements to combine</param>
+            <returns>A combined path</returns>
+        </member>
+        <member name="P:PCLStorage.PortablePath.DirectorySeparatorChar">
+            <summary>
+            The character used to separate elements in a file system path
+            </summary>
+        </member>
+        <member name="T:PCLStorage.DesktopFileSystem">
+            <summary>
+            Implementation of <see cref="T:PCLStorage.IFileSystem"/> over classic .NET file I/O APIs
+            </summary>
+        </member>
+        <member name="M:PCLStorage.DesktopFileSystem.GetFileFromPathAsync(System.String)">
+            <summary>
+            Gets a file, given its path.  Returns null if the file does not exist.
+            </summary>
+            <param name="path">The path to a file, as returned from the <see cref="P:PCLStorage.IFile.Path"/> property.</param>
+            <returns>A file for the given path, or null if it does not exist.</returns>
+        </member>
+        <member name="M:PCLStorage.DesktopFileSystem.GetFolderFromPathAsync(System.String)">
+            <summary>
+            Gets a folder, given its path.  Returns null if the folder does not exist.
+            </summary>
+            <param name="path">The path to a folder, as returned from the <see cref="P:PCLStorage.IFolder.Path"/> property.</param>
+            <returns>A folder for the specified path, or null if it does not exist.</returns>
+        </member>
+        <member name="P:PCLStorage.DesktopFileSystem.LocalStorage">
+            <summary>
+            A folder representing storage which is local to the current device
+            </summary>
+        </member>
+        <member name="P:PCLStorage.DesktopFileSystem.RoamingStorage">
+            <summary>
+            A folder representing storage which may be synced with other devices for the same user
+            </summary>
+        </member>
+        <member name="T:PCLStorage.FileSystemFile">
+            <summary>
+            Represents a file in the <see cref="T:PCLStorage.DesktopFileSystem"/>
+            </summary>
+        </member>
+        <member name="M:PCLStorage.FileSystemFile.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:PCLStorage.FileSystemFile"/> corresponding to the specified path
+            </summary>
+            <param name="path">The file path</param>
+        </member>
+        <member name="M:PCLStorage.FileSystemFile.OpenAsync(PCLStorage.FileAccess)">
+            <summary>
+            Opens the file
+            </summary>
+            <param name="fileAccess">Specifies whether the file should be opened in read-only or read/write mode</param>
+            <returns>A <see cref="T:System.IO.Stream"/> which can be used to read from or write to the file</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFile.DeleteAsync">
+            <summary>
+            Deletes the file
+            </summary>
+            <returns>A task which will complete after the file is deleted.</returns>
+        </member>
+        <member name="P:PCLStorage.FileSystemFile.Name">
+            <summary>
+            The name of the file
+            </summary>
+        </member>
+        <member name="P:PCLStorage.FileSystemFile.Path">
+            <summary>
+            The "full path" of the file, which should uniquely identify it within a given <see cref="T:PCLStorage.IFileSystem"/>
+            </summary>
+        </member>
+        <member name="T:PCLStorage.FileSystemFolder">
+            <summary>
+            Represents a folder in the <see cref="T:PCLStorage.DesktopFileSystem"/>
+            </summary>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:PCLStorage.FileSystemFolder"/> corresponding to a specified path
+            </summary>
+            <param name="path">The folder path</param>
+            <param name="canDelete">Specifies whether the folder can be deleted (via <see cref="M:PCLStorage.FileSystemFolder.DeleteAsync"/>)</param>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:PCLStorage.FileSystemFolder"/> corresponding to a specified path
+            </summary>
+            <param name="path">The folder path</param>
+            <remarks>A folder created with this constructor cannot be deleted via <see cref="M:PCLStorage.FileSystemFolder.DeleteAsync"/></remarks>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.CreateFileAsync(System.String,PCLStorage.CreationCollisionOption)">
+            <summary>
+            Creates a file in this folder
+            </summary>
+            <param name="desiredName">The name of the file to create</param>
+            <param name="option">Specifies how to behave if the specified file already exists</param>
+            <returns>The newly created file</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.GetFileAsync(System.String)">
+            <summary>
+            Gets a file in this folder
+            </summary>
+            <param name="name">The name of the file to get</param>
+            <returns>The requested file, or null if it does not exist</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.GetFilesAsync">
+            <summary>
+            Gets a list of the files in this folder
+            </summary>
+            <returns>A list of the files in the folder</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.CreateFolderAsync(System.String,PCLStorage.CreationCollisionOption)">
+            <summary>
+            Creates a subfolder in this folder
+            </summary>
+            <param name="desiredName">The name of the folder to create</param>
+            <param name="option">Specifies how to behave if the specified folder already exists</param>
+            <returns>The newly created folder</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.GetFolderAsync(System.String)">
+            <summary>
+            Gets a subfolder in this folder
+            </summary>
+            <param name="name">The name of the folder to get</param>
+            <returns>The requested folder, or null if it does not exist</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.GetFoldersAsync">
+            <summary>
+            Gets a list of subfolders in this folder
+            </summary>
+            <returns>A list of subfolders in the folder</returns>
+        </member>
+        <member name="M:PCLStorage.FileSystemFolder.DeleteAsync">
+            <summary>
+            Deletes this folder and all of its contents
+            </summary>
+            <returns>A task which will complete after the folder is deleted</returns>
+        </member>
+        <member name="P:PCLStorage.FileSystemFolder.Name">
+            <summary>
+            The name of the folder
+            </summary>
+        </member>
+        <member name="P:PCLStorage.FileSystemFolder.Path">
+            <summary>
+            The "full path" of the folder, which should uniquely identify it within a given <see cref="T:PCLStorage.IFileSystem"/>
+            </summary>
+        </member>
+    </members>
+</doc>

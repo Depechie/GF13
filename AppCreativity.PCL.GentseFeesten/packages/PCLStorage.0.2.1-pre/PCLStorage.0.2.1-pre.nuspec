@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>PCLStorage</id>
+    <version>0.2.1-pre</version>
+    <title>PCL Storage - Portable Storage APIs</title>
+    <authors>Daniel Plaisted</authors>
+    <owners>Daniel Plaisted</owners>
+    <licenseUrl>http://pclstorage.codeplex.com/license</licenseUrl>
+    <projectUrl>http://pclstorage.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PCL Storage provides a consistent, portable set of local file IO APIs for .NET, Windows Phone, Windows Store, and Silverlight.  This makes it easier to create cross-platform .NET libraries and apps.</description>
+    <summary>PCL Storage provides a consistent, portable set of local file IO APIs across .NET platforms.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>io storage portable pcl</tags>
+    <dependencies>
+      <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+    </dependencies>
+  </metadata>
+</package>

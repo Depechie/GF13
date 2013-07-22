@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>PortableRest</id>
+    <version>1.0.8-alpha</version>
+    <title>PortableRest</title>
+    <authors>AdvancedREI</authors>
+    <owners>AdvancedREI</owners>
+    <projectUrl>http://github.com/AdvancedREI/PortableRest</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library for consuming REST APIs from Portable Class Libraries (.NET 4.0.3 &amp; 4.5, Silverlight 4 &amp; 5, Windows Phone 7.5 &amp; 8, and Windows 8). Designed to be partially drop-in compatible with RestSharp.</description>
+    <releaseNotes>1.0.8-alpha: Compile to new dependencies.
+1.0.6-alpha: Update based on changes to HttpClient.Compression.
+1.0.5-alpha: Added Compression support.
+1.0.4-alpha: Added basic POST support, &amp; updated XML deserialization.
+1.0.3-alpha: Added XML deserialization with DataContracts.
+1.0.0-alpha: First release.</releaseNotes>
+    <copyright>Copyright © 2013 AdvancedREI, LLC.</copyright>
+    <language />
+    <tags>REST Portable Class Library PCL RestSharp HTTP API JSON XML</tags>
+    <dependencies>
+      <group targetFramework=".NETPortable0.0-net403+sl40+wp71+win80">
+        <dependency id="Microsoft.Bcl.Async" version="1.0.16" />
+        <dependency id="Newtonsoft.Json" version="5.0.4" />
+        <dependency id="Microsoft.Net.Http" version="2.1.3-beta" />
+        <dependency id="HttpClient.Compression" version="1.0.3-rc2" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

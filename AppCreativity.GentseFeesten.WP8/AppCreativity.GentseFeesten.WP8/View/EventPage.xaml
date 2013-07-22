@@ -1,0 +1,95 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="AppCreativity.GentseFeesten.WP8.View.EventPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:JeffWilcox.Controls;assembly=JeffWilcox.Maps"
+    xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
+    xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="#FF005471"
+    DataContext="{Binding Event, Source={StaticResource Locator}}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <converters:StringToUppercaseConverter x:Name="StringToUppercaseConverter" />
+    </phone:PhoneApplicationPage.Resources>
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsMenuEnabled="False">
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#FF005471">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <i:Interaction.Behaviors>
+            <cimbalino:ApplicationBarBehavior BackgroundColor="#FF007390">
+                <cimbalino:ApplicationBarIconButton Command="{Binding RouteCommand, Mode=OneTime}"
+                                                    IconUri="/Assets/AppBar/appbar.directions.png"
+                                                    Text="route"
+                                                    />
+                <cimbalino:ApplicationBarIconButton Command="{Binding WebCommand, Mode=OneTime}"
+                                                    IconUri="/Assets/AppBar/appbar.globe.wire.png"
+                                                    Text="online"
+                                                    />
+            </cimbalino:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
+
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,0,0,27" Background="#FF007390">
+            <TextBlock Text="#GF13"
+                       FontFamily="/AppCreativity.GentseFeesten.WP8;component/Fonts/PTN57F.ttf#PT Sans"
+                       Style="{StaticResource PhoneTextNormalStyle}" Margin="0,6" HorizontalAlignment="Center" FontSize="48"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="165" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:StaticMap x:Name="EventMap"
+                                Width="480"
+                                Height="165"
+                                ZoomLevel="16"
+                                Foreground="Red"
+                                MapCenter="{Binding MapCenter}"
+                                Grid.Row="0"
+                                />
+            <ScrollViewer Grid.Row="1" Margin="0,12,0,28">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding GFEvent.title, Converter={StaticResource StringToUppercaseConverter}}" VerticalAlignment="Top"
+                           Style="{StaticResource SubTitleStyle}"
+                           FontSize="32"
+                           Margin="20,0,20,0"
+                           Grid.Row="0"/>
+                    <Grid Grid.Row="1">
+                        <Rectangle Fill="Gray"
+                               Margin="28,40,20,-4"
+                               Width="{Binding ActualWidth, ElementName=DetailList, Mode=OneWay}"
+                               Height="{Binding ActualHeight, ElementName=DetailList, Mode=OneWay}" />
+                        <phone:LongListSelector x:Name="DetailList"                                        
+                                            Margin="24,36,24,6"
+                                            Background="White"
+                                            ItemTemplate="{StaticResource DetailDataTemplate}"
+                                            ItemsSource="{Binding Detail}"
+                                            IsGroupingEnabled="False"
+                                            />
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PCLStorage.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:PCLStorage.FileExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:PCLStorage.IFile"/> class
+            </summary>
+        </member>
+        <member name="M:PCLStorage.FileExtensions.ReadAllTextAsync(PCLStorage.IFile)">
+            <summary>
+            Reads the contents of a file as a string
+            </summary>
+            <param name="file">The file to read </param>
+            <returns>The contents of the file</returns>
+        </member>
+        <member name="M:PCLStorage.FileExtensions.WriteAllTextAsync(PCLStorage.IFile,System.String)">
+            <summary>
+            Writes text to a file, overwriting any existing data
+            </summary>
+            <param name="file">The file to write to</param>
+            <param name="contents">The content to write to the file</param>
+            <returns>A task which completes when the write operation finishes</returns>
+        </member>
+        <member name="T:PCLStorage.FileAccess">
+            <summary>
+            Specifies whether a file should be opened for write access or not
+            </summary>
+        </member>
+        <member name="F:PCLStorage.FileAccess.Read">
+            <summary>
+            Specifies that a file should be opened for read-only access
+            </summary>
+        </member>
+        <member name="F:PCLStorage.FileAccess.ReadAndWrite">
+            <summary>
+            Specifies that a file should be opened for read/write access
+            </summary>
+        </member>
+        <member name="T:PCLStorage.IFile">
+            <summary>
+            Represents a file
+            </summary>
+        </member>
+        <member name="M:PCLStorage.IFile.OpenAsync(PCLStorage.FileAccess)">
+            <summary>
+            Opens the file
+            </summary>
+            <param name="fileAccess">Specifies whether the file should be opened in read-only or read/write mode</param>
+            <returns>A <see cref="T:System.IO.Stream"/> which can be used to read from or write to the file</returns>
+        </member>
+        <member name="M:PCLStorage.IFile.DeleteAsync">
+            <summary>
+            Deletes the file
+            </summary>
+            <returns>A task which will complete after the file is deleted.</returns>
+        </member>
+        <member name="P:PCLStorage.IFile.Name">
+            <summary>
+            The name of the file
+            </summary>
+        </member>
+        <member name="P:PCLStorage.IFile.Path">
+            <summary>
+            The "full path" of the file, which should uniquely identify it within a given <see cref="T:PCLStorage.IFileSystem"/>
+            </summary>
+        </member>
+        <member name="T:PCLStorage.IFileSystem">
+            <summary>
+            Represents a file system.
+            </summary>
+        </member>
+        <member name="M:PCLStorage.IFileSystem.GetFileFromPathAsync(System.String)">
+            <summary>
+            Gets a file, given its path.  Returns null if the file does not exist.
+            </summary>
+            <param name="path">The path to a file, as returned from the <see cref="P:PCLStorage.IFile.Path"/> property.</param>
+            <returns>A file for the given path, or null if it does not exist.</returns>
+        </member>
+        <member name="M:PCLStorage.IFileSystem.GetFolderFromPathAsync(System.String)">
+            <summary>
+            Gets a folder, given its path.  Returns null if the folder does not exist.
+            </summary>
+            <param name="path">The path to a folder, as returned from the <see cref="P:PCLStorage.IFolder.Path"/> property.</param>
+            <returns>A folder for the specified path, or null if it does not exist.</returns>
+        </member>
+        <member name="P:PCLStorage.IFileSystem.LocalStorage">
+            <summary>
+            A folder representing storage which is local to the current device
+            </summary>
+        </member>
+        <member name="P:PCLStorage.IFileSystem.RoamingStorage">
+            <summary>
+            A folder representing storage which may be synced with other devices for the same user
+            </summary>
+        </member>
+        <member name="T:PCLStorage.CreationCollisionOption">
+            <summary>
+            Specifies what should happen when trying to create a file or folder that already exists.
+            </summary>
+        </member>
+        <member name="F:PCLStorage.CreationCollisionOption.GenerateUniqueName">
+            <summary>
+            Creates a new file with a unique name of the form "name (2).txt"
+            </summary>
+        </member>
+        <member name="F:PCLStorage.CreationCollisionOption.ReplaceExisting">
+            <summary>
+            Replaces any existing file with a new (empty) one
+            </summary>
+        </member>
+        <member name="F:PCLStorage.CreationCollisionOption.FailIfExists">
+            <summary>
+            Throws an exception if the file exists
+            </summary>
+        </member>
+        <member name="F:PCLStorage.CreationCollisionOption.OpenIfExists">
+            <summary>
+            Opens the existing file, if any
+            </summary>
+        </member>
+        <member name="T:PCLStorage.IFolder">
+            <summary>
+            Represents a file system folder
+            </summary>
+        </member>
+        <member name="M:PCLStorage.IFolder.CreateFileAsync(System.String,PCLStorage.CreationCollisionOption)">
+            <summary>
+            Creates a file in this folder
+            </summary>
+            <param name="desiredName">The name of the file to create</param>
+            <param name="option">Specifies how to behave if the specified file already exists</param>
+            <returns>The newly created file</returns>
+        </member>
+        <member name="M:PCLStorage.IFolder.GetFileAsync(System.String)">
+            <summary>
+            Gets a file in this folder
+            </summary>
+            <param name="name">The name of the file to get</param>
+            <returns>The requested file, or null if it does not exist</returns>
+        </member>
+        <member name="M:PCLStorage.IFolder.GetFilesAsync">
+            <summary>
+            Gets a list of the files in this folder
+            </summary>
+            <returns>A list of the files in the folder</returns>
+        </member>
+        <member name="M:PCLStorage.IFolder.CreateFolderAsync(System.String,PCLStorage.CreationCollisionOption)">
+            <summary>
+            Creates a subfolder in this folder
+            </summary>
+            <param name="desiredName">The name of the folder to create</param>
+            <param name="option">Specifies how to behave if the specified folder already exists</param>
+            <returns>The newly created folder</returns>
+        </member>
+        <member name="M:PCLStorage.IFolder.GetFolderAsync(System.String)">
+            <summary>
+            Gets a subfolder in this folder
+            </summary>
+            <param name="name">The name of the folder to get</param>
+            <returns>The requested folder, or null if it does not exist</returns>
+        </member>
+        <member name="M:PCLStorage.IFolder.GetFoldersAsync">
+            <summary>
+            Gets a list of subfolders in this folder
+            </summary>
+            <returns>A list of subfolders in the folder</returns>
+        </member>
+        <member name="M:PCLStorage.IFolder.DeleteAsync">
+            <summary>
+            Deletes this folder and all of its contents
+            </summary>
+            <returns>A task which will complete after the folder is deleted</returns>
+        </member>
+        <member name="P:PCLStorage.IFolder.Name">
+            <summary>
+            The name of the folder
+            </summary>
+        </member>
+        <member name="P:PCLStorage.IFolder.Path">
+            <summary>
+            The "full path" of the folder, which should uniquely identify it within a given <see cref="T:PCLStorage.IFileSystem"/>
+            </summary>
+        </member>
+    </members>
+</doc>
